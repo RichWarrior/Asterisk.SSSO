@@ -12,7 +12,7 @@ namespace Asterisk.SSSO.Sample
 
         public SampleSSSO()
         {
-            StasisEndpoint endpoint = new StasisEndpoint("127.0.0.1",7004,"root","CB4434000bc",false);
+            StasisEndpoint endpoint = new StasisEndpoint("127.0.0.1",7004,"root","123",false);
             ariMain = new ARIMain(endpoint, "AsteriskSSSO", this);
 
             this.MaxWaitingTime = 30;

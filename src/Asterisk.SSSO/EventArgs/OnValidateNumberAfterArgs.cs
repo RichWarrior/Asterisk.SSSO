@@ -1,4 +1,4 @@
-﻿using AsterNet.Standard.ARI_1_0.Models;
+﻿using AsterNet.Standard.Models;
 
 namespace Asterisk.SSSO.EventArgs
 {

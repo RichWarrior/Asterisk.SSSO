@@ -2,8 +2,7 @@
 using Asterisk.SSSO.EventArgs;
 using Asterisk.SSSO.Utilities;
 using AsterNet.Standard;
-using AsterNet.Standard.ARI_1_0.Events;
-using AsterNet.Standard.ARI_1_0.Models;
+using AsterNet.Standard.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Asterisk.SSSO
 
             dtmfTimer = new Timer(dtmfTimerDoWork, lockObject, TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }
-        private void AriClient_OnStasisStartEvent(IAriClient sender, AsterNet.Standard.ARI_1_0.Events.StasisStartEvent e)
+        private void AriClient_OnStasisStartEvent(IAriClient sender, StasisStartEvent e)
         {
             sender.Channels.Answer(e.Channel.Id);
             numbers.Add(e.Channel.Caller.Number, e.Channel.Id);
@@ -56,7 +55,7 @@ namespace Asterisk.SSSO
             dtmfs.Add(e.Channel.Id, dtmfItem);
         }
 
-        private void AriClient_OnChannelDtmfReceivedEvent(IAriClient sender, AsterNet.Standard.ARI_1_0.Events.ChannelDtmfReceivedEvent e)
+        private void AriClient_OnChannelDtmfReceivedEvent(IAriClient sender,ChannelDtmfReceivedEvent e)
         {
             DtmfItem dtmfItem;
             dtmfs.TryGetValue(e.Channel.Id, out dtmfItem);
@@ -94,7 +93,7 @@ namespace Asterisk.SSSO
             }
         }
 
-        private void AriClient_OnChannelHangupRequestEvent(IAriClient sender, AsterNet.Standard.ARI_1_0.Events.ChannelHangupRequestEvent e)
+        private void AriClient_OnChannelHangupRequestEvent(IAriClient sender, ChannelHangupRequestEvent e)
         {
             string callerId = e.Channel.Caller.Number;
             numbers.Remove(callerId);

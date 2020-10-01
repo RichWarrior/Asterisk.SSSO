@@ -1,7 +1,7 @@
 ﻿using Asterisk.SSSO.Entities;
 using Asterisk.SSSO.EventArgs;
 using AsterNet.Standard;
-using AsterNet.Standard.ARI_1_0.Models;
+using AsterNet.Standard.Models;
 using System;
 
 namespace Asterisk.SSSO

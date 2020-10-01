@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Ömer Faruk Şahin</Authors>
+    <Company>Ömer Faruk Şahin</Company>
+    <Description>Asterisk Sip Single Sign On With AsterNet.Standard and Asterisk 16</Description>
+    <RepositoryUrl>https://github.com/RichWarrior/Asterisk.SSSO</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

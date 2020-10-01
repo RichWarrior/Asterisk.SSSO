@@ -2,7 +2,7 @@
 using Asterisk.SSSO.EventArgs;
 using Asterisk.SSSO.Utilities;
 using AsterNet.Standard;
-using AsterNet.Standard.ARI_1_0.Models;
+using AsterNet.Standard.Models;
 
 namespace Asterisk.SSSO.Sample
 {
@@ -24,15 +24,13 @@ namespace Asterisk.SSSO.Sample
 
         public override bool ValidateNumber(IAriClient ariClient, Channel channel)
         {
-            if (channel.Caller.Number == "90530000000")
-                return true;
+            //Arayan Numarayı Kontrol Edilecek Kısım
             return false;
         }
 
         public override bool ValidatePin(DtmfItem dtmfItem)
         {
-            if (dtmfItem.digits == "1234" && dtmfItem.channel.Caller.Number == "905300000000")
-                return true;
+            //Girilen Pin'i Kontrol Edilecek Kısım
             return false;
         }
 
@@ -40,104 +38,52 @@ namespace Asterisk.SSSO.Sample
         {
             this.OnValidateNumberBefore = (OnValidateNumberBeforeArgs e) =>
             {
-                if(e.channel.Caller.Number == "905300000000")
-                {
-
-                }
+                //Numarayı Kontrol Etmeden Önce Yapılacaklar
             };
 
             this.OnValidateNumberAfter = (OnValidateNumberAfterArgs e) =>
             {
-                if(e.cause == Constants.CallerIdValidated)
-                {
-
-                }
-                else
-                {
-
-                }
+                //Numarayı Kontrol Ettikten Sonra Yapılacaklar
             };
 
             this.OnAuthenticationFailedBefore = (OnAuthenticationFailedBeforeArgs e) =>
             {
-                if(e.cause == Constants.TimeHasExpired)
-                {
-
-                }
-                if(e.cause == Constants.PinValidationError)
-                {
-
-                }
-                if(e.cause == Constants.PleaseAgainTry)
-                {
-
-                }
+                //Oturum Açılamadan Önce Yapılacaklar
             };
 
             this.OnAuthenticationFailedEventHandler += (sender, e) =>
             {
-                if (e.cause == Constants.TimeHasExpired)
-                {
-
-                }
-                if (e.cause == Constants.PinValidationError)
-                {
-
-                }
-                if (e.cause == Constants.PleaseAgainTry)
-                {
-
-                }
+              //Oturum Açılmama Esnasında Yapılacaklar
             };
 
             this.OnAuthenticationFailedAfter = (OnAuthenticationFailedAfterArgs e) =>
             {
-                if (e.cause == Constants.TimeHasExpired)
-                {
-
-                }
-                if (e.cause == Constants.PinValidationError)
-                {
-
-                }
-                if (e.cause == Constants.PleaseAgainTry)
-                {
-
-                }
+               //Oturum Açılmama İşleminden Sonra Yapılacaklar
             };
 
             this.OnValidatePinBefore = (OnValidatePinBeforeArgs e) =>
             {
-                if(e.dtmfItem.channel.Caller.Number == "905300000000" && e.dtmfItem.digits == "####")
-                {                    
-                }
+                //Pin Kontrol Etmeden Önce Yapılacaklar
             };
 
             this.OnValidatePinAfter = (OnValidatePinAfterArgs e) =>
             {
-                if(e.cause == Constants.PinValidated)
-                {
-
-                }
-                else
-                {
-
-                }
+               //Pin Kontrol Ettikten SOnra Yapılacaklar
             };
 
             this.OnAuthenticatedBefore = (OnAuthenticatedBeforeArgs e) =>
             {
-                
+                //Oturum Açma Başarılı Olmadan Önce Yapılacaklar
             };
 
             this.OnAuthenticatedEventHandler += (sender, e) =>
             {
-                
+                //Oturum Açma Başarılı Olduğu Esnada Yapılacaklar
             };
 
             this.OnAuthenticatedAfter = (OnAuthenticatedAfterArgs e) =>
             {
-
+                //Oturum Açma Başarılı Olduktan Sonra Yapılacaklar
             };
         }
     }
